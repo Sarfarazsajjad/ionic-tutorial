@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>todo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label position="floating">Title</ion-label>
+    <ion-input [(ngModel)]="addNote.title" name="title"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Description</ion-label>
+    <ion-textarea [(ngModel)]="addNote.description" name="description"></ion-textarea>
+  </ion-item>
+  <br>
+  <ion-button expand="full" (click)="saveNote()">Submit</ion-button>
+
+  <h5>Notes List</h5>
+  <ion-list>
+    <ion-item *ngFor="let note of notes">
+      <h6><strong>{{note.title}} </strong>: {{note.description}}</h6>
+      <ion-button  slot="end" (click)="deleteNote(note)" color="danger" class="button fancy-button">delete</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
