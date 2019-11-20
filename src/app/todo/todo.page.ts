@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { getNumberOfCurrencyDigits } from '@angular/common';
 
 @Component({
   selector: 'app-todo',
@@ -11,6 +12,21 @@ export class TodoPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.getNotes();
+  }
+
+  async getNotes(){
+    console.log('get Notes')
+      const response = await fetch('http://localhost:3000/get-notes', {
+        method: 'GET', 
+        mode: 'cors', 
+        cache: 'no-cache', 
+        credentials: 'same-origin',
+        headers: {'Content-Type': 'application/json'},
+        redirect: 'follow',
+        referrer: 'no-referrer', 
+      });
+       await response.json().then(res=>this.notes=res); 
   }
 
   async saveNote(){
